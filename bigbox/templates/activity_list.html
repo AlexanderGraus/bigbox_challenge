@@ -1,0 +1,33 @@
+
+{%extends 'base.html' %}
+
+{% block content %}
+    <h1>Activities en {{box_name}}:</h1>
+    <ol>
+        {% for activity in activities %}
+            <li>
+                <ul>
+                    <li><h4>Nombre: {{activity.name | upper}}</h4></li>
+                </ul>
+            </li>
+        {% endfor%}
+    </ol>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if activities.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ activities.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ activities.number }} of {{ activities.paginator.num_pages }}.
+            </span>
+    
+            {% if activities.has_next %}
+                <a href="?page={{ activities.next_page_number }}">next</a>
+                <a href="?page={{ activities.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock%}

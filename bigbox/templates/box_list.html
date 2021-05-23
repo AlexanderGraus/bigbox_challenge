@@ -1,0 +1,17 @@
+
+{%extends 'base.html' %}
+
+{% block content %}
+    <h1>Boxes:</h1>
+    <ol>
+        {% for box in boxes %}
+            <li>
+                <ul>
+                    <li><h4>Nombre: {{box.name}}</h4></li>
+                    <li><h4>Descripcion: {{box.description}}</h4></li>
+                    <li><h4>Categoria: {{box.category.name}}</h4></li>
+                </ul>
+            </li>
+        {% endfor%}
+    </ol>
+{% endblock%}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Box, Activity, Category, Reason
+from .models import Box, Activity
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
@@ -8,8 +8,11 @@ def box_list(request):
     boxes = Box.objects.all()
     return render(request,'box_list.html',{'boxes':boxes})
 
-def box_detail(request,pk):
-    box = Box.objects.get(pk=pk)
+def box_detail(request,pk=None,slug=None): # como no se si el user va a buscar por pk o por slug, el valor por defecto de ambos es None
+    if pk:
+        box = Box.objects.get(pk=pk)
+    else:
+        box = Box.objects.get(slug=slug)
     activities = box.activities.all()[:5] # guarda las primeras 5 activities
     return render(request,'box_detail.html',{"box":box,"activities":activities})
 

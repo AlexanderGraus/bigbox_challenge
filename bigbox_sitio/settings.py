@@ -9,21 +9,25 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+import os
 
 ES_HEROKU= False
 try:
 	import django_heroku #U: autoconfiguracion Heroku, comando complementario al final del archivo
 	ES_HEROKU= True
+    
+    def env(k):
+        return os.environ.get(k)
+
 except ImportError:
 	print('django_heroku no esta disponible')
+    from environs import Env
+
+    #incializar variables de entorno
+    env = Env()
+    env.read_env()
 
 
-import os
-from environs import Env
-
-#incializar variables de entorno
-env = Env()
-env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -18,12 +18,12 @@ def box_detail(request,pk=None,slug=None): # como no se si el user va a buscar p
 
 def activity_list_by_box(request,pk):
     activities = Activity.objects.filter(box__pk=pk)
-    box_name = Box.objects.get(pk=pk).name
+    box = Box.objects.get(pk=pk)
 
     paginator = Paginator(activities, 20) # muestra 20 resultados por pagina
     page = request.GET.get('page')
     activities = paginator.get_page(page)
-    return render(request,'activity_list.html',{"activities":activities, "box_name":box_name})
+    return render(request,'activity_list.html',{"box":box, "activities":activities})
 
 def activity_detail_by_box(request,box_pk,activity_pk):
     activity = Activity.objects.get(pk=activity_pk, box__pk=box_pk) # devuelve la activity buscada si coincide con el box id

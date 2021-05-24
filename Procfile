@@ -1,0 +1,1 @@
+web: gunicorn bigbox_sitio.wsgi

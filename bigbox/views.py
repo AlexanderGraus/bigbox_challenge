@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Box, Activity, Category, Reason
 from django.core.paginator import Paginator
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 def box_list(request):
@@ -13,12 +14,15 @@ def box_detail(request,pk):
     return render(request,'box_detail.html',{"box":box,"activities":activities})
 
 def activity_list_by_box(request,pk):
-    box_name = Box.objects.get(pk=pk).name
     activities = Activity.objects.filter(box__pk=pk)
-    print(activities[0].name)
-    print(box_name)
+    box_name = Box.objects.get(pk=pk).name
 
     paginator = Paginator(activities, 20) # muestra 20 resultados por pagina
     page = request.GET.get('page')
     activities = paginator.get_page(page)
     return render(request,'activity_list.html',{"activities":activities, "box_name":box_name})
+
+def activity_detail_by_box(request,box_pk,activity_pk):
+    activity = Activity.objects.get(pk=activity_pk, box__pk=box_pk) # devuelve la activity buscada si coincide con el box id
+    box = Box.objects.get(pk= box_pk)
+    return render(request,'activity_box_detail.html',{"box":box, "activity":activity})

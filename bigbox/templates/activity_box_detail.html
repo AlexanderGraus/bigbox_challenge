@@ -1,0 +1,19 @@
+{%extends 'base.html' %}
+
+{% block content %}
+    <h1>El Box "{{box.name}}" cuenta con la Actividad "{{activity.name}}"</h1>
+    <h3>Detalles del box:</h3>
+    <ul>
+        <li><h4>Nombre: {{box.name}}</h4></li>
+        <li><h4>Descripcion: {{box.description}}</h4></li>
+        <li><h4>Categoria: {{box.category.name}}</h4></li>
+    </ul>
+
+
+    <h3>Detalles de la actividad:</h3>
+    <ul>
+        <li><h4>Nombre: {{activity.name}}</h4></li>
+        <li><h4>Descripcion: {{activity.description}}</h4></li>
+        <li><h4>Categoria: {{activity.category.name}}</h4></li>
+    </ul>
+{% endblock %}

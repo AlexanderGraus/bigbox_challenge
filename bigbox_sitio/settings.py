@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
 
-def env(k):
-    return os.environ.get(k)
-
 ES_HEROKU = False
 
 try:
@@ -23,12 +20,18 @@ try:
 
 except ImportError:
     print('django_heroku no esta disponible')
-    from environs import Env
-    # incializar variables de entorno
-    env = Env()
-    env.read_env()
 
+from environs import Env
+# incializar variables de entorno
+env_leido = Env()
+env_leido.read_env()
 
+def env(k):
+    if ES_HEROKU:
+        return os.environ.get(k)
+    else:
+        return env_leido(k)
+    
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -10,6 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+ES_HEROKU= False
+try:
+	import django_heroku #U: autoconfiguracion Heroku, comando complementario al final del archivo
+	ES_HEROKU= True
+except ImportError:
+	print('django_heroku no esta disponible')
+
+
 import os
 from environs import Env
 
@@ -129,3 +137,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+if ES_HEROKU:
+	django_heroku.settings(locals()) #A: Activate Django-Heroku.

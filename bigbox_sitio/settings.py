@@ -11,19 +11,20 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
 
-ES_HEROKU= False
+def env(k):
+    return os.environ.get(k)
+
+ES_HEROKU = False
+
 try:
-	import django_heroku #U: autoconfiguracion Heroku, comando complementario al final del archivo
-	ES_HEROKU= True
-    
-    def env(k):
-        return os.environ.get(k)
+	# U: autoconfiguracion Heroku, comando complementario al final del archivo
+	import django_heroku
+	ES_HEROKU = True
 
 except ImportError:
-	print('django_heroku no esta disponible')
+    print('django_heroku no esta disponible')
     from environs import Env
-
-    #incializar variables de entorno
+    # incializar variables de entorno
     env = Env()
     env.read_env()
 

@@ -1,19 +1,71 @@
 {%extends 'base.html' %}
 
 {% block content %}
-    <h1>El Box "{{box.name}}" cuenta con la Actividad "{{activity.name}}"</h1>
-    <h3>Detalles del box:</h3>
-    <ul>
-        <li><h4>Nombre: {{box.name}}</h4></li>
-        <li><h4>Descripcion: {{box.description}}</h4></li>
-        <li><h4>Categoria: {{box.category.name}}</h4></li>
-    </ul>
+    <main role="main">
 
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1>Detalle del Box y la Actividad</h1>
+                <p class="lead text-muted">El Box "{{box.name}}" cuenta con la Actividad "{{activity.name}}"</p>
+                <p>
+                    <a href="{% url 'activity_list_by_box' pk=box.pk %}" class="btn btn-primary my-2">Ver las demas actividades</a>
+                </p>
+            </div>
+        </section>
 
-    <h3>Detalles de la actividad:</h3>
-    <ul>
-        <li><h4>Nombre: {{activity.name}}</h4></li>
-        <li><h4>Descripcion: {{activity.description}}</h4></li>
-        <li><h4>Categoria: {{activity.category.name}}</h4></li>
-    </ul>
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <p style="text-align: center;">Box:</p>
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">{{box.name}}</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">{{box.description}}</p>
+                                <p><strong>Categoria:</strong> {{box.category.name}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{% url 'box_detail_pk' pk=box.pk %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <p style="text-align: center;">Actividad:</p>
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">{{activity.name}}</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">{{activity.description}}</p>
+                                <p><strong>Categoria:</strong> {{activity.category.name}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+    </main>
 {% endblock %}

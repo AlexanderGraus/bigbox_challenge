@@ -59,9 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bigbox.apps.BigboxConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,3 +150,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 if ES_HEROKU:
 	django_heroku.settings(locals()) #A: Activate Django-Heroku.
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

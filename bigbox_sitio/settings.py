@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'bigbox.apps.BigboxConfig',
     'debug_toolbar',
     'django_extensions',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [

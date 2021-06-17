@@ -19,7 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('bigbox.urls')),
+    path('box/', include('bigbox.urls')),
+    path('polls/', include('polls.urls')),
 ]
 
 if settings.DEBUG: # solo mostrar debug toolbar cuando estamos en desarrollo

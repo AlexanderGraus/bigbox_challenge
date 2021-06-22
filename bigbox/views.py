@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Box, Activity
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+
 # Create your views here.
 
 def box_list(request):
@@ -20,7 +22,7 @@ def activity_list_by_box(request,pk):
     activities = Activity.objects.filter(box__pk=pk)
     box = Box.objects.get(pk=pk)
 
-    paginator = Paginator(activities, 20) # muestra 20 resultados por pagina
+    paginator = Paginator(activities, settings.PAGINADOR_ACTIVITY) 
     page = request.GET.get('page')
     activities = paginator.get_page(page)
     return render(request,'activity_list.html',{"box":box, "activities":activities})

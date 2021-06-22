@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'polls.apps.PollsConfig',
     'historical_data',
+    'rest_framework',
+    'snippets.apps.SnippetsConfig',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +159,5 @@ if ES_HEROKU:
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+PAGINADOR_ACTIVITY = int(os.environ.get('PAGINAS', '10'))

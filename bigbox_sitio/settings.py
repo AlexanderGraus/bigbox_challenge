@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'historical_data',
     'rest_framework',
-    'snippets.apps.SnippetsConfig',
 ]
 
 MIDDLEWARE = [

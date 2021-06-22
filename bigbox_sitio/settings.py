@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     'polls.apps.PollsConfig',
+    'historical_data',
 ]
 
 MIDDLEWARE = [

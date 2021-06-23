@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'historical_data',
     'rest_framework',
+    'quickstart.apps.QuickstartConfig',
 ]
 
 MIDDLEWARE = [
@@ -159,4 +160,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-PAGINADOR_ACTIVITY = int(os.environ.get('PAGINAS', '10'))
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+PAGINADOR_ACTIVITY = int(os.environ.get('PAGINAS', '10')) # toma las paginas del .env o le da valor 10

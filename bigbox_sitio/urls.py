@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('box/', include('bigbox.urls')),
     path('polls/', include('polls.urls')),
+    path('quickstart/', include('quickstart.urls')),
 ]
 
 if settings.DEBUG: # solo mostrar debug toolbar cuando estamos en desarrollo

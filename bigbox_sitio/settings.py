@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     'historical_data',
     'rest_framework',
     'quickstart.apps.QuickstartConfig',
+    'snippets.apps.SnippetsConfig',
+
 ]
 
 MIDDLEWARE = [

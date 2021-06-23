@@ -19,9 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('box/', include('bigbox.urls')),
-    path('polls/', include('polls.urls')),
-    path('quickstart/', include('quickstart.urls')),
+    path('box/', include('bigbox.urls')),  # Challenge original
+    path('polls/', include('polls.urls')), # tutorial django
+    path('quickstart/', include('quickstart.urls')), # primer tutorial django rest
+    path('snippets/', include('snippets.urls')), # tutorial extenso de django rest
 ]
 
 if settings.DEBUG: # solo mostrar debug toolbar cuando estamos en desarrollo

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'quickstart.apps.QuickstartConfig',
     'snippets.apps.SnippetsConfig',
     'graphene_django',
+    'ingredients.apps.IngredientsConfig',
 
 ]
 

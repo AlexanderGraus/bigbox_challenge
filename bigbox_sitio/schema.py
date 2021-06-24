@@ -3,8 +3,9 @@ import graphene
 import ingredients.schema
 import ingredients.schema
 
+
 class Query(
-    ingredients.schema.Query, # Add your Query objects here
+    ingredients.schema.Query,  # Add your Query objects here
     graphene.ObjectType
 ):
     pass

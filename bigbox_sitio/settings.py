@@ -172,5 +172,6 @@ REST_FRAMEWORK = {
 }
 
 GRAPHENE = {
-    "SCHEMA": "bigbox_sitio.schema.schema"
+    "SCHEMA": "bigbox_sitio.schema.schema",
+    "ATOMIC_MUTATIONS": True,
 }

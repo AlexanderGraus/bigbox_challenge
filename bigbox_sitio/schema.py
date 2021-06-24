@@ -1,11 +1,18 @@
 import graphene
 
 import ingredients.schema
+import ingredients.schema
 
-
-class Query(ingredients.schema.Query, graphene.ObjectType):
-    # This class will inherit from multiple Queries
-    # as we begin to add more apps to our project
+class Query(
+    ingredients.schema.Query, # Add your Query objects here
+    graphene.ObjectType
+):
     pass
 
-schema = graphene.Schema(query=Query)
+class Mutation(
+    ingredients.schema.Mutation, # Add your Mutation objects here
+    graphene.ObjectType
+):
+    pass
+
+schema = graphene.Schema(query=Query, mutation=Mutation)

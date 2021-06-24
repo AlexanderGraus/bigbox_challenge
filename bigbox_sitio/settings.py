@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'quickstart.apps.QuickstartConfig',
     'snippets.apps.SnippetsConfig',
+    'graphene_django',
 
 ]
 
@@ -167,4 +168,8 @@ PAGINADOR_ACTIVITY = int(os.environ.get('PAGINAS', '10')) # toma las paginas del
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': PAGINADOR_ACTIVITY
+}
+
+GRAPHENE = {
+    "SCHEMA": "bigbox_sitio.schema.schema"
 }

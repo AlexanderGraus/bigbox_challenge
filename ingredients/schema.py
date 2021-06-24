@@ -15,6 +15,8 @@ class CategoryNode(DjangoObjectType):
         filter_fields = ['name', 'ingredients']
         interfaces = (relay.Node, )
 
+class MyIngredient(graphene.ObjectType):
+    name = graphene.String()
 
 class IngredientNode(DjangoObjectType):
     class Meta:
@@ -27,11 +29,37 @@ class IngredientNode(DjangoObjectType):
             'category__name': ['exact'],
         }
         interfaces = (relay.Node, )
+    
+    extra_ingredient = graphene.String()
+    
+    def resolve_extra_ingredient(self, info):
+        return "chimichurri!"
 
+class IngredientConnection(relay.Connection):
+    class Meta:
+        node = IngredientNode
 
 class Query(graphene.ObjectType):
     category = relay.Node.Field(CategoryNode)
     all_categories = DjangoFilterConnectionField(CategoryNode)
 
     ingredient = relay.Node.Field(IngredientNode)
-    all_ingredients = DjangoFilterConnectionField(IngredientNode)
+    all_ingredients = relay.ConnectionField(IngredientConnection)
+    
+    def resolve_ingredients(root, info, **kwargs):
+        return Ingredient.objects.all()
+    
+    # campo personalizado
+    ingrediente = graphene.Field(MyIngredient, ingrediente_id=graphene.String())
+    
+    def resolve_ingrediente(root, info, ingrediente_id):
+        ingrediente = Ingredient.objects.get(pk=ingrediente_id)
+        return MyIngredient(name=ingrediente.name)
+
+
+#devuelve la categoria solo si el usuario esta logueado
+def resolve_category(root, info):
+    if info.context.user.is_authenticated():
+        return Category.objects.all()
+    else:
+        return Category.objects.none()

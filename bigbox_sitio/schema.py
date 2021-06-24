@@ -9,10 +9,12 @@ class Query(
 ):
     pass
 
-class Mutation(
-    ingredients.schema.Mutation, # Add your Mutation objects here
-    graphene.ObjectType
-):
-    pass
+#TODO: tengo que comentar esto por ahora par que el tutorial siga funcionando
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+# class Mutation(
+#     ingredients.schema.Mutation, # Add your Mutation objects here
+#     graphene.ObjectType
+# ):
+#     pass
+
+schema = graphene.Schema(query=Query,) #mutation=Mutation)

@@ -1,7 +1,7 @@
 import graphene
 
 from graphene import relay, ObjectType
-from graphene_django import DjangoObjectType
+from graphene_django import DjangoObjectType, DjangoListField
 from graphene_django.filter import DjangoFilterConnectionField
 
 from ingredients.models import Category, Ingredient
@@ -35,6 +35,10 @@ class IngredientNode(DjangoObjectType):
     def resolve_extra_ingredient(self, info):
         return "chimichurri!"
 
+    def get_queryset(cls, queryset, info):
+      # Filter out ingredients that have no name
+      return queryset.exclude(name__exact="")
+
 class IngredientConnection(relay.Connection):
     class Meta:
         node = IngredientNode
@@ -45,9 +49,14 @@ class Query(graphene.ObjectType):
 
     ingredient = relay.Node.Field(IngredientNode)
     all_ingredients = relay.ConnectionField(IngredientConnection)
+    ingredientsList = DjangoListField(IngredientNode)
     
     def resolve_ingredients(root, info, **kwargs):
         return Ingredient.objects.all()
+
+    def resolve_ingredientsList(parent, info):
+        # Only get ingredients that have categories
+        return Ingredient.objects.select_related("category").all()
     
     # campo personalizado
     ingrediente = graphene.Field(MyIngredient, ingrediente_id=graphene.String())

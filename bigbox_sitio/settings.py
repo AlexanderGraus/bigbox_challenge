@@ -167,7 +167,7 @@ INTERNAL_IPS = [
 PAGINADOR_ACTIVITY = int(os.environ.get('PAGINAS', '10')) # toma las paginas del .env o le da valor 10
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': PAGINADOR_ACTIVITY
 }
 
